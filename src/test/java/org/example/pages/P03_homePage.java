@@ -57,4 +57,16 @@ public class P03_homePage {
         WebDriverWait wait = new WebDriverWait(Hooks.driver, Duration.ofSeconds(30));
         wait.until(ExpectedConditions.attributeToBe(By.xpath(s), style, s1));
     }
+
+    @FindBy (css = ".follow-us .social .facebook a")
+    public WebElement faceBook;
+
+    @FindBy(css = ".follow-us .social .twitter a")
+    public WebElement twitter;
+
+    @FindBy(css = ".follow-us .social .rss a")
+    public WebElement rss;
+
+    @FindBy(css = ".follow-us .social .youtube a")
+    public WebElement youTube;
 }
