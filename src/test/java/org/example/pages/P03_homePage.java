@@ -57,7 +57,6 @@ public class P03_homePage {
         WebDriverWait wait = new WebDriverWait(Hooks.driver, Duration.ofSeconds(30));
         wait.until(ExpectedConditions.attributeToBe(By.xpath(s), style, s1));
     }
-
     @FindBy (css = ".follow-us .social .facebook a")
     public WebElement faceBook;
 
@@ -69,4 +68,17 @@ public class P03_homePage {
 
     @FindBy(css = ".follow-us .social .youtube a")
     public WebElement youTube;
+
+    @FindBy(xpath = "/html/body/div[6]/div[3]/div/div/div/div/div[4]/div[2]/div[3]/div/div[2]/div[3]/div[2]/button[3]")
+    public WebElement htcLoliicon;
+
+    @FindBy(className = "content")
+    public WebElement sucssMessage;
+    @FindBy(css = ".bar-notification.success")
+    public WebElement notificationSection;
+    @FindBy(className = "wishlist-label")
+    public WebElement wishlistTab;
+
+    @FindBy(name = "itemquantity11227")
+    public WebElement qty;
 }
