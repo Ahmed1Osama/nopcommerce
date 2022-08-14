@@ -27,7 +27,6 @@ public class D06_homeSlidersStepDef {
         } else if (arg0.equals("Iphone")) {
             softAssert.assertEquals(Hooks.driver.getCurrentUrl(),"https://demo.nopcommerce.com/iphone-6");
             softAssert.assertAll();
-
         }
     }
 

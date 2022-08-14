@@ -13,9 +13,11 @@ import java.time.Duration;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+import static org.example.stepDefs.Hooks.driver;
+
 public class P03_homePage {
     public P03_homePage() {
-        PageFactory.initElements(Hooks.driver,this);
+        PageFactory.initElements(driver,this);
     }
 
     @FindBy(id="customerCurrency")
@@ -51,11 +53,11 @@ public class P03_homePage {
 
 
     public void implicitWait(){
-        Hooks.driver.manage().timeouts().implicitlyWait(6, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(6, TimeUnit.SECONDS);
     }
     public void implicitWaitUntill(String s, String style, String s1) {
-        WebDriverWait wait = new WebDriverWait(Hooks.driver, Duration.ofSeconds(30));
-        wait.until(ExpectedConditions.attributeToBe(By.xpath(s), style, s1));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+        wait.until(ExpectedConditions.elementToBeClickable(wishlistTab));
     }
     @FindBy (css = ".follow-us .social .facebook a")
     public WebElement faceBook;
@@ -76,9 +78,9 @@ public class P03_homePage {
     public WebElement sucssMessage;
     @FindBy(css = ".bar-notification.success")
     public WebElement notificationSection;
-    @FindBy(className = "wishlist-label")
+    @FindBy(className = "ico-wishlist")
     public WebElement wishlistTab;
 
-    @FindBy(name = "itemquantity11227")
+    @FindBy(className = "qty-input")
     public WebElement qty;
 }
