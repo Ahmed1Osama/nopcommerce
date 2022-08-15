@@ -1,7 +1,11 @@
 package org.example.stepDefs;
 
+import io.cucumber.core.gherkin.Feature;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
+import io.cucumber.java.Scenario;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
@@ -9,6 +13,7 @@ import java.util.concurrent.TimeUnit;
 
 public class Hooks {
     public static WebDriver driver = null;
+
 
     @Before
     public static void openBrowser(){
@@ -32,6 +37,5 @@ public class Hooks {
     public static void quitBrowser() throws InterruptedException {
         Thread.sleep(3000);
         driver.quit();
-
     }
 }

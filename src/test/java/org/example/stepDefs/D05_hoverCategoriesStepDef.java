@@ -13,15 +13,16 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import static java.lang.Math.*;
+import static org.example.stepDefs.Hooks.driver;
 
 public class D05_hoverCategoriesStepDef {
 
     P03_homePage hover = new P03_homePage();
     SoftAssert softAssert = new SoftAssert();
-    Actions actions = new Actions(Hooks.driver);
+    Actions actions = new Actions(driver);
     public static int selectedCategory;
     int selectedSubCategory;
-    List<WebElement> maincategories;
+    List<WebElement> mainCategories;
     List<WebElement> subCategoryLinks;
     String locator;
     String selectedMainCategoryText;
@@ -30,15 +31,15 @@ public class D05_hoverCategoriesStepDef {
 
     @Given("user hover on one of the main categories")
     public void hoverMainMenu() throws InterruptedException {
-        maincategories = hover.maincategories;
-        int cout = maincategories.size();
+        mainCategories = hover.maincategories;
+        int cout = mainCategories.size();
         System.out.println(cout);
         int min = 0;
         int max = cout - 1;
-        selectedCategory = (int) floor(random() * (max - min + 1) + min);
-        actions.moveToElement(maincategories.get(selectedCategory)).perform();
-        selectedMainCategoryText = maincategories.get(selectedCategory).getText();
-        System.out.println("the selected category is" + selectedMainCategoryText);
+        selectedCategory = (int) floor(random() * ( max - min + 1 ) + min);
+        actions.moveToElement(mainCategories.get(selectedCategory)).perform();
+        selectedMainCategoryText = mainCategories.get(selectedCategory).getText();
+        System.out.println("the selected category is   " + selectedMainCategoryText);
         Thread.sleep(2000);
 
     }
@@ -47,11 +48,9 @@ public class D05_hoverCategoriesStepDef {
     @When("user could view sub category if exist")
     public void userCouldViewSubCategoryIfExist() {
         selectedCategory = selectedSubCategory + 1;
-        locator = "(/html/body/div[6]/div[2]/ul[1])[" + selectedCategory + "]/li";
-        subCategoryLinks = Hooks.driver.findElements(By.xpath(locator));
-
-        Hooks.driver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
-
+        locator = "(//ul[@class='top-menu notmobile']//ul)[" + selectedCategory + "]/li";
+        subCategoryLinks = driver.findElements(By.xpath(locator));
+        driver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
 
     }
 
@@ -65,23 +64,22 @@ public class D05_hoverCategoriesStepDef {
             int countS = subCategoryLinks.size();
             int minS = 0;
             int maxS = countS - 1;
-            selectedSubCategory = (int) floor(random() * (maxS - minS + 1) + minS);
+            selectedSubCategory = (int) floor(random() * ( maxS - minS + 1 ) + minS);
             actions.moveToElement(subCategoryLinks.get(selectedSubCategory)).perform();
             selectedSubCategoryText = subCategoryLinks.get(selectedSubCategory).getText();
-            System.out.println("Sub category is : " + selectedSubCategoryText);
+            System.out.println("Sub category is :   " + selectedSubCategoryText);
             Thread.sleep(1000);
             subCategoryLinks.get(selectedSubCategory).click();
             softAssert.assertEquals(hover.pageTitle.getText().toLowerCase().trim(), selectedSubCategoryText.toLowerCase().trim());
             softAssert.assertAll();
         }else {
-            maincategories.get(selectedCategory).click();
+            mainCategories.get(selectedCategory-1).click();
             softAssert.assertEquals(hover.pageTitle.getText().toLowerCase().trim(), selectedMainCategoryText.toLowerCase().trim());
             softAssert.assertAll();
         }
-
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 
     }
-
 
         }
 

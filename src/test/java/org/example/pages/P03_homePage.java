@@ -39,10 +39,9 @@ public class P03_homePage {
     @FindBy(className = "sku")
     public WebElement serilProduct;
 
-    @FindBy(xpath= "/html/body/div[6]/div[2]/ul[1]") ////ul[@class=\"top-menu notmobile\"]/li"
+    @FindBy(xpath= ".//*[@class='top-menu notmobile']/li") ////ul[@class=\"top-menu notmobile\"]/li"
     public List<WebElement> maincategories;               // /html/body/div[6]/div[2]/ul[1]
                                                          // /html/body/div[6]/div[2]/ul[1]/li
-
 
     @FindBy(className = "page-title")
     public WebElement pageTitle;

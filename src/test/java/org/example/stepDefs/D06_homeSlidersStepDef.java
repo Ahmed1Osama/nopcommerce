@@ -17,8 +17,6 @@ public class D06_homeSlidersStepDef {
         homeSlider.implicitWait();
 
     }
-
-
     @Then("user should navigate to clickable URL {string}")
     public void userShouldNavigateToClickableURL(String arg0) {
         if (arg0.equals("Nokia1020")){
